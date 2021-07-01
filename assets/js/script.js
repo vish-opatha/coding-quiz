@@ -2,16 +2,23 @@ var timeLeft = 100;
 var displayTime = document.querySelector("#counter");
 var quizStartBtn  = document.querySelector("#startQuiz");
 var quizForm = document.querySelector(".quizMain");
+var viewHighScore =document.body.children[0].children[0];
+
+// Form header and caption on the main page
 var formHeader = quizForm.children[0];
 var formCaption = quizForm.children[1];
 
-console.log(quizForm);
+// Question and answer buttons
+var question = document.createElement("h4");
+var answerOne = document.createElement("button");
+var answerTwo = document.createElement("butt");
 
-
+var questionPool = [["What is a?","HYPER,TENSE,MARK,LANGUAGE",2],["How do you do thi?","CYBER,CRIME,SOLE,DEEP",2]];
 
 // Timer starts running when the user clicks the Start Quiz button on the form
 function setTime(event) {
     event.preventDefault();
+    hidePageElements();
     displayQuestions();
     var timerInterval = setInterval(function() {
       timeLeft--;
@@ -25,8 +32,31 @@ function setTime(event) {
   }
 
   function displayQuestions(){
-    formHeader.setAttribute("style", "display: none;");
-    formCaption.setAttribute("style", "display: none;");
+    
+
+   
+      var questionCaption = questionPool[0][0];
+      var answers = questionPool[0][1];
+      
+    //  var correctAns=questionPool[[0][1]];
+
+     question.textContent=questionCaption;
+      // answerOne.innerHTML="Click";
+      answerOne.innerHTML=answers;
+
+     quizForm.appendChild(question);
+      quizForm.appendChild(answerOne);
+
+
+    
+  }
+
+  // This function is used to hide the elements when the quiz starts
+  function hidePageElements(){
+    formHeader.setAttribute("class", "hide-elements");
+    formCaption.setAttribute("class", "hide-elements");
+    viewHighScore.setAttribute("class", "hide-elements");
+    quizStartBtn.setAttribute("class", "hide-elements");
   }
 
   quizStartBtn.addEventListener("click", setTime); 
@@ -70,27 +100,6 @@ function setTime(event) {
 
 
 
-// var secondsLeft = 100;
-
-// startButton.addEventListener("click", setTime); 
-
-// function setTime(event) {
-//   event.preventDefault();
-//   console.log("Bootcamp");
-//   // Sets interval in variable
-//   var timerInterval = setInterval(function() {
-//     secondsLeft--;
-//     timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-
-//     if(secondsLeft === 0) {
-//       // Stops execution of action at set interval
-//       clearInterval(timerInterval);
-//       // Calls function to create and append image
-      
-//     }
-
-//   }, 50);
-// }
 
 
 
