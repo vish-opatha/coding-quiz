@@ -114,13 +114,16 @@ function setTime(event) {
     
   }
 
-  function saveUserScore(){
+  function saveUserScore(event){
+    event.preventDefault();
+    window.location.replace('view_highscore.html');
     var userMarks= {
       uName: nameTextB.value,
       marks: userScore
     };
     
     localStorage.setItem("uScore", JSON.stringify(userMarks));
+    
 
     
     }
@@ -156,46 +159,5 @@ function setTime(event) {
 // // answerOne.textContent="javascript";
 // // answerTwo.textContent="HTML";
 
-// answerLi1.textContent="javascript";
-// answerLi2.textContent="HTML";
-// answerLi3.textContent="JQuery"
 
 
-// // var count=localStorage.getItem("count");
-
-// // counter.textContent =count;
-// qustionTag.textContent="What is meant by CSS";
-// myForm.appendChild(listEl);
-// listEl.appendChild(answerLi1);
-// listEl.appendChild(answerLi2);
-// listEl.appendChild(answerLi3);
-
-// var timeEl = document.querySelector(".time");
-// var startButton = document.querySelector("#start");
-// // console.log(startButton);
-// // Selects element by id
-
-
-
-
-
-
-// // startButton.addEventListener("click",function(event){
-// //    event.preventDefault();
-// //   // count++;
-// //   // counter.textContent=count;
-// //   // localStorage.setItem("count",count);
-
-// //   // qustionTag = document.createElement("h2");
-// //   document.body.appendChild(questionUl);
-// //   document.body.appendChild(qustionTag);
-  
-  
-// //   questionUl.appendChild(answerOne);
-// //   document.body.appendChild(questionUl);
-// //   // document.body.questionUl.appendChild(answerTwo);
-// //   // document.body.appendChild(answerLiTwo);
-
-// //   // body.appendChild(infoEl);
-
-// // })

@@ -13,3 +13,4 @@
         Missing parts
         - Icons usage in correct or wrong answers
         - Need to consider why questions are iterating without having questions in the pool
+        - Need to think of several javascripts or one js file
