@@ -18,10 +18,12 @@ var indResult = document.createElement("div");
 // var answerTwo = document.createElement("butt");
 
 // Save user scores
-//var userScore = localStorage.getItem("marks");
+var userScore = 0;
 var pElement = document.createElement("p");
 var letterPElement = document.createElement("p");
 var submitBtn = document.createElement("button");
+var nameTextB = document.createElement("input");
+
 
 
 
@@ -72,6 +74,7 @@ function setTime(event) {
 
     if(questionCount==0 || timeLeft==0)
     {
+      
       // question.setAttribute("class","hide-elements");
       //  working code
       answerOne.setAttribute("class","hide-elements");
@@ -86,9 +89,14 @@ function setTime(event) {
       setTimeout(function() {
         question.textContent="All done. Your final score is "+ userScore;
       letterPElement.innerHTML="Enter your initials ";
+      submitBtn.innerHTML="Submit";
+      nameTextB.setAttribute("type","text");
+      nameTextB.setAttribute("id","userName");
 
       quizForm.appendChild(letterPElement);
-     }, 3000);
+      quizForm.appendChild(nameTextB);
+      quizForm.appendChild(submitBtn);
+     }, 800);
 
       
       
@@ -107,20 +115,29 @@ function setTime(event) {
   }
 
   function saveUserScore(){
+    var userMarks= {
+      uName: nameTextB.value,
+      marks: userScore
+    };
+    
+    localStorage.setItem("uScore", JSON.stringify(userMarks));
+
+    
+    }
     
     
-  }
+  
 
   // This function is used to hide the elements when the quiz starts
   function hidePageElements(){
     formHeader.setAttribute("class", "hide-elements");
     formCaption.setAttribute("class", "hide-elements");
-    viewHighScore.setAttribute("class", "hide-elements");
     quizStartBtn.setAttribute("class", "hide-elements");
   }
 
   quizStartBtn.addEventListener("click", setTime); 
   answerOne.addEventListener("click",displayQuestionResult);
+  submitBtn.addEventListener("click",saveUserScore);
   
 
 // var counter = document.querySelector("#counter");
