@@ -25,6 +25,8 @@ var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
 
 
+// 
+
 
 
 
@@ -138,26 +140,12 @@ function setTime(event) {
     quizStartBtn.setAttribute("class", "hide-elements");
   }
 
+ 
+
   quizStartBtn.addEventListener("click", setTime); 
   answerOne.addEventListener("click",displayQuestionResult);
   submitBtn.addEventListener("click",saveUserScore);
+  // 
   
-
-// var counter = document.querySelector("#counter");
-// var startButton =document.querySelector('#startQuiz');
-// var quizForm = document.querySelector("body");
-// var myForm=document.getElementById("myForm");
-// counter.textContent = 0;
-// var qustionTag =document.createElement("h2");
-// var answerOne=document.createElement("h4");
-// var answerTwo=document.createElement("h4");
-// var listEl = document.createElement("ul");
-// var answerLi1=document.createElement("li");
-// var answerLi2=document.createElement("li");
-// var answerLi3=document.createElement("li");
-// var timeEl = document.getElementById("time");
-// // answerOne.textContent="javascript";
-// // answerTwo.textContent="HTML";
-
 
 
