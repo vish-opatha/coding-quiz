@@ -12,3 +12,7 @@ a{
 .hide-elements{
     display: none;
 }
+
+.display-elements{
+    display: block;
+}

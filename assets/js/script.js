@@ -9,11 +9,22 @@ var formHeader = quizForm.children[0];
 var formCaption = quizForm.children[1];
 
 // Question and answer buttons
+var questionPool = [["What is a?","HYPER","TENSE","MARK","LANGUAGE",2],
+                    ["How do you do thi?","CYBER,CRIME,SOLE,DEEP",2]];
+var questionCount = questionPool.length;
 var question = document.createElement("h4");
 var answerOne = document.createElement("button");
-var answerTwo = document.createElement("butt");
+var indResult = document.createElement("div");
+// var answerTwo = document.createElement("butt");
 
-var questionPool = [["What is a?","HYPER,TENSE,MARK,LANGUAGE",2],["How do you do thi?","CYBER,CRIME,SOLE,DEEP",2]];
+// Save user scores
+//var userScore = localStorage.getItem("marks");
+var pElement = document.createElement("p");
+var letterPElement = document.createElement("p");
+var submitBtn = document.createElement("button");
+
+
+
 
 // Timer starts running when the user clicks the Start Quiz button on the form
 function setTime(event) {
@@ -31,23 +42,72 @@ function setTime(event) {
     }, 1000);
   }
 
+  var i=0
   function displayQuestions(){
     
-
-   
-      var questionCaption = questionPool[0][0];
-      var answers = questionPool[0][1];
+      var questionCaption = questionPool[i][0];
+      var answers = questionPool[i][1];
       
     //  var correctAns=questionPool[[0][1]];
-
+    // indResult.setAttribute("class","hide-elements");
      question.textContent=questionCaption;
       // answerOne.innerHTML="Click";
       answerOne.innerHTML=answers;
-
-     quizForm.appendChild(question);
+            quizForm.appendChild(question);
       quizForm.appendChild(answerOne);
+      console.log ("i "+i+" questioncount"+questionCount);
+      questionCount--;
+      console.log ("i "+i+" questioncount"+questionCount);
+      i++;
+}
+  // This function is used to display the result of the individual question
+  function displayQuestionResult(event){
+    event.preventDefault();
+    // indResult.setAttribute("class","display-elements")
+    indResult.textContent = "Correct ";
+    quizForm.appendChild(indResult);
+    
+    userScore=timeLeft;
+    //localStorage.setItem("marks", userScore);
+
+    if(questionCount==0 || timeLeft==0)
+    {
+      // question.setAttribute("class","hide-elements");
+      //  working code
+      answerOne.setAttribute("class","hide-elements");
+      indResult.setAttribute("Class","hide-elements");
+
+      // question.textContent="All done. Your final score is "+ userScore;
+      // letterPElement.innerHTML="Enter your initials ";
+
+      // quizForm.appendChild(letterPElement); working code*/
 
 
+      setTimeout(function() {
+        question.textContent="All done. Your final score is "+ userScore;
+      letterPElement.innerHTML="Enter your initials ";
+
+      quizForm.appendChild(letterPElement);
+     }, 3000);
+
+      
+      
+    }
+
+    else{
+      setTimeout(function() {
+        displayQuestions();
+     }, 1000);
+      
+    }
+
+   
+
+    
+  }
+
+  function saveUserScore(){
+    
     
   }
 
@@ -60,7 +120,7 @@ function setTime(event) {
   }
 
   quizStartBtn.addEventListener("click", setTime); 
-
+  answerOne.addEventListener("click",displayQuestionResult);
   
 
 // var counter = document.querySelector("#counter");

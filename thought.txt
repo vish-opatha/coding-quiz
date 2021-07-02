@@ -8,3 +8,8 @@
           </h4>
           <button id="startQuiz">Start</button>
         </form>
+
+
+        Missing parts
+        - Icons usage in correct or wrong answers
+        - Need to consider why questions are iterating without having questions in the pool
