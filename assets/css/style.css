@@ -1,13 +1,41 @@
-/* div,a,p,h2,h4,p,button,form {
-    border: 2px solid green;
-}
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial;
+    margin: 0 auto;
+    width:80%;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    
+  }
 
-a{
-    display:block;
-    font-size: large;
-} 
+  .header{
+      display:flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .main{
+      display:flex;
+      flex-direction: row;
+     
+  }
+  .quiz-main{
+    display:flex;
+    flex-direction: column;
+    }
 
-*/
+  .quiz-main h2{
+      text-align: center;
+  }
+
+  
+
+     
 
 .hide-elements{
     display: none;
@@ -17,7 +45,7 @@ a{
     display: block;
 }
 
-button{
+/* button{
     display:block;
     
-}
+} */

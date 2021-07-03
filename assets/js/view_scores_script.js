@@ -30,12 +30,12 @@ var scoreList = [];
    var savedMarks =JSON.parse(localStorage.getItem("userMarks"));
    console.log(savedMarks);
 
-var userName =savedMarks["uName"];
- var marks = savedMarks["marks"];
+// var userName =savedMarks["uName"];
+//  var marks = savedMarks["marks"];
 
    var liElement =document.createElement("li");
-    // liElement.textContent="Vish";
-  liElement.textContent = userName+ " "+marks;
+     liElement.textContent="Vish";
+//   liElement.textContent = userName+ " "+marks;
    listItem.appendChild(liElement);
 
  }
