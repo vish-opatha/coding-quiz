@@ -16,3 +16,8 @@ a{
 .display-elements{
     display: block;
 }
+
+button{
+    display:block;
+    
+}

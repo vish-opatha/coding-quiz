@@ -1,5 +1,6 @@
 var previousBtn = document.querySelector("#previousBtn");
 var clearBtn = document.querySelector("#clearBtn");
+var listItem = document.querySelector("#score-list")
 var scoreList = [];
 
  function visitMainPage(event){
@@ -23,6 +24,22 @@ var scoreList = [];
     }      
  }
 
+
+ function init()
+ {
+   var savedMarks =JSON.parse(localStorage.getItem("userMarks"));
+   console.log(savedMarks);
+
+var userName =savedMarks["uName"];
+ var marks = savedMarks["marks"];
+
+   var liElement =document.createElement("li");
+    // liElement.textContent="Vish";
+  liElement.textContent = userName+ " "+marks;
+   listItem.appendChild(liElement);
+
+ }
+
 //  function init() {
 //     // Get stored todos from localStorage
 //     var storedScore = JSON.parse(localStorage.getItem('todos'));
@@ -35,6 +52,6 @@ var scoreList = [];
 //     // This is a helper function that will render todos to the DOM
 //     renderTodos();
 //   }
-
+ init();
  previousBtn.addEventListener("click",visitMainPage);
  clearBtn.addEventListener("click",clearHighScore);
