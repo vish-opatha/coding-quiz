@@ -28,10 +28,11 @@ var indResult = document.createElement("div");
 
 // Save user scores
 var userScore = 100;
-var pElement = document.createElement("p");
 var letterPElement = document.createElement("p");
 var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
+
+var timerInterval = null;
  
 
 
@@ -42,7 +43,7 @@ function setTime(event) {
     event.preventDefault();
     hidePageElements();
     displayQuestions();
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
       userScore--;
       displayTime.textContent = userScore;
   
@@ -55,21 +56,26 @@ function setTime(event) {
   }
 
   var i=0
-  function displayQuestions(event){
-      // event.preventDefault();
+  var displayQu =document.querySelector(".displayQuiz");
+  function displayQuestions(){
+      //event.preventDefault();
       var questionCaption = questionPool[i][0];
       var answer1 = questionPool[i][1];
       var answer2 = questionPool[i][2];
       var answer3 = questionPool[i][3];
       var answer4 = questionPool[i][4];
       correctAnswer = questionPool[i][5];
-
-      question.textContent=questionCaption;
-      answerOne.innerHTML=answer1; answerOne.setAttribute("ans-option","1");
-      answerTwo.innerHTML=answer2; answerTwo.setAttribute("ans-option","2");
-      answerThree.innerHTML=answer3; answerThree.setAttribute("ans-option","3");
-      answerFour.innerHTML=answer4; answerFour.setAttribute("ans-option","4");
-
+    
+      question.textContent = questionCaption;
+      answerOne.innerHTML = answer1;
+      answerOne.setAttribute("ans-option", "1");
+      answerTwo.innerHTML = answer2;
+      answerTwo.setAttribute("ans-option", "2");
+      answerThree.innerHTML = answer3;
+      answerThree.setAttribute("ans-option", "3");
+      answerFour.innerHTML = answer4;
+      answerFour.setAttribute("ans-option", "4");
+    
       quizForm.appendChild(answerList);
       answerList.appendChild(question);
       answerList.appendChild(answerOne);
@@ -78,9 +84,16 @@ function setTime(event) {
       answerList.appendChild(answerFour);
       i++
       questionCount--;
+      
+
+      
+
+      
+     
 
 }
  
+var ansDisplay = document.querySelector(".displayAnswer");
   function displayQuestionResult(event){
     event.preventDefault();
     var element=event.target;
@@ -92,20 +105,24 @@ function setTime(event) {
       {
         userScore=userScore;
         indResult.textContent = "Correct✔️ ";
-        quizForm.appendChild(indResult);
+        ansDisplay.appendChild(indResult);
       }
 
       else{
         userScore=userScore-10;
         displayTime.innerHTML=userScore;
         indResult.textContent = "Incorrect ";
-        quizForm.appendChild(indResult);
+        ansDisplay.appendChild(indResult);
       }
     }
 
 
+
     if(questionCount==0 || timeLeft==0)
     {
+         //####### ADDED NEW #########
+        //###########################
+      clearInterval(timerInterval);
       setTimeout(function() {
       answerOne.setAttribute("class","hide-elements");
       answerTwo.setAttribute("class","hide-elements");
@@ -125,6 +142,7 @@ function setTime(event) {
       quizForm.appendChild(letterPElement);
       quizForm.appendChild(nameTextB);
       quizForm.appendChild(submitBtn);
+
      }, 800);
 
       
