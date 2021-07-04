@@ -1,12 +1,7 @@
-var timeLeft = 100;
 var displayTime = document.querySelector("#counter");
 var quizStartBtn  = document.querySelector("#startQuiz");
 var quizForm = document.querySelector(".quizMain");
-var viewHighScore =document.body.children[0].children[0];
-
-// Form header and caption on the main page
-var formHeader = quizForm.children[0];
-var formCaption = quizForm.children[1];
+var quizCaption =document.querySelector("#quiz-header");
 
 // Questions and answer buttons
 var questionPool = [["What does CSS stand for?","Current Style Sheets","Current Sheets Style",
@@ -27,13 +22,13 @@ var answerList = document.createElement("ul");
 var indResult = document.createElement("div");
 
 // Save user scores
-var userScore = 100;
+var scoreTime = 100;
 var letterPElement = document.createElement("p");
 var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
 
 var timerInterval = null;
-var scoreList = [];
+
  
 
 
@@ -45,10 +40,10 @@ function setTime(event) {
     hidePageElements();
     displayQuestions();
     timerInterval = setInterval(function() {
-      userScore--;
-      displayTime.textContent = userScore;
+      scoreTime--;
+      displayTime.textContent = scoreTime;
   
-      if(userScore === 0) 
+      if(scoreTime === 0) 
       {      
         clearInterval(timerInterval);    
       }
@@ -104,14 +99,14 @@ var ansDisplay = document.querySelector(".displayAnswer");
       var optionValue =element.getAttribute("ans-option");
       if(optionValue == correctAnswer)
       {
-        userScore=userScore;
+        scoreTime=scoreTime;
         indResult.textContent = "Correct✔️ ";
         ansDisplay.appendChild(indResult);
       }
 
       else{
-        userScore=userScore-10;
-        displayTime.innerHTML=userScore;
+        scoreTime=scoreTime-10;
+        displayTime.innerHTML=scoreTime;
         indResult.textContent = "Incorrect ";
         ansDisplay.appendChild(indResult);
       }
@@ -119,7 +114,7 @@ var ansDisplay = document.querySelector(".displayAnswer");
 
 
 
-    if(questionCount==0 || timeLeft==0)
+    if(questionCount==0 || scoreTime==0)
     {
          //####### ADDED NEW #########
         //###########################
@@ -134,7 +129,7 @@ var ansDisplay = document.querySelector(".displayAnswer");
 
 
       setTimeout(function() {
-      question.textContent="All done. Your final score is "+ userScore;
+      question.textContent="All done. Your final score is "+ scoreTime;
       letterPElement.innerHTML="Enter your initials ";
       submitBtn.innerHTML="Submit";
       nameTextB.setAttribute("type","text");
@@ -163,49 +158,27 @@ var ansDisplay = document.querySelector(".displayAnswer");
   }
 
   
-  function saveUserScore(event){
+  function savescoreTime(event){
     event.preventDefault();
     window.location.replace('view_highscore.html');
-    // var userMarks= {
-    //   uName: nameTextB.value,
-    //   marks: userScore
-    // };
-    // scoreList = JSON.parse(localStorage.getItem("uScore"));
-    // if(scoreList.length==0)
-    // {
-    //   scoreList.push(nameTextB.value+" - "+userScore);
-    //   localStorage.setItem("uScore", JSON.stringify(scoreList));
-    // }
-
-    // else{
-    //   scoreList = JSON.parse(localStorage.getItem("uScore"));
-    //   scoreList .push(nameTextB.value+" - "+userScore);
-    //   localStorage.setItem("uScore", JSON.stringify(scoreList ));
-
-    // }
-    
+    var scoreList = [];   
     var existingList = JSON.parse(localStorage.getItem("uScore"));
      
     //   console.log(existingList);
  
      if (existingList == null) {
-          scoreList.push(nameTextB.value+" - "+userScore)
+          scoreList.push(nameTextB.value+" - "+scoreTime)
           localStorage.setItem("uScore", JSON.stringify(scoreList));
      }
  
      else {
        //   console.log(existingList);
        scoreList=JSON.parse(localStorage.getItem("uScore"));
-       scoreList.push(nameTextB.value+" - "+userScore)
+       scoreList.push(nameTextB.value+" - "+scoreTime)
        localStorage.setItem("uScore", JSON.stringify(scoreList));
      }      
    
     
-    console.log(scoreList);
-    
-    console.log(scoreList);
-    
-    // localStorage.setItem("uScore", JSON.stringify(userMarks));
     
     }
 
@@ -216,8 +189,8 @@ var ansDisplay = document.querySelector(".displayAnswer");
 
   // This function is used to hide the elements when the quiz starts
   function hidePageElements(){
-    formHeader.setAttribute("class", "hide-elements");
-    formCaption.setAttribute("class", "hide-elements");
+    // formHeader.setAttribute("class", "hide-elements");
+    quizCaption.setAttribute("class", "hide-elements");
     quizStartBtn.setAttribute("class", "hide-elements");
   }
 
@@ -225,7 +198,7 @@ var ansDisplay = document.querySelector(".displayAnswer");
 
   quizStartBtn.addEventListener("click", setTime); 
   answerList.addEventListener("click",displayQuestionResult);
-  submitBtn.addEventListener("click",saveUserScore);
+  submitBtn.addEventListener("click",savescoreTime);
   // 
   
 

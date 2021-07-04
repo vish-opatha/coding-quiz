@@ -22,22 +22,24 @@
   
   .main{
       display:flex;
+      flex-direction: column;
       
      
   }
   .quiz-main{
     display:flex;
-    flex-direction: row;
+    /* flex-direction: column; */
+    /* flex-direction: row; */
     justify-content: center;
     align-items: center;
     
-    }
+    } */
 
-    #startQuiz{
+    /* #startQuiz{
         align-self: center;
         justify-items: center;
 
-    }
+    } */
 
   h2,h4{
       text-align: center;
