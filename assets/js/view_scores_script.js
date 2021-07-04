@@ -30,10 +30,12 @@ var scoreList = [];
 function renderHighScores()
 {
    var savedScore=JSON.parse(localStorage.getItem("uScore"));
-   var i=savedScore.length;
+   
    var textline="";
 
    if(savedScore!==null)
+   {
+   var i=savedScore.length;
    {
       for(j=0;j<i;j++)
       {
@@ -41,7 +43,7 @@ function renderHighScores()
       }
 
       listItem.innerHTML=textline;
-   }
+   }}
 
    else{ 
       return;}

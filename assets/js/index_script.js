@@ -162,19 +162,51 @@ var ansDisplay = document.querySelector(".displayAnswer");
     
   }
 
+  
   function saveUserScore(event){
     event.preventDefault();
     window.location.replace('view_highscore.html');
-    var userMarks= {
-      uName: nameTextB.value,
-      marks: userScore
-    };
-    scoreList = JSON.parse(localStorage.getItem("uScore"));
-    scoreList.push(nameTextB.value+" "+userScore);
+    // var userMarks= {
+    //   uName: nameTextB.value,
+    //   marks: userScore
+    // };
+    // scoreList = JSON.parse(localStorage.getItem("uScore"));
+    // if(scoreList.length==0)
+    // {
+    //   scoreList.push(nameTextB.value+" - "+userScore);
+    //   localStorage.setItem("uScore", JSON.stringify(scoreList));
+    // }
+
+    // else{
+    //   scoreList = JSON.parse(localStorage.getItem("uScore"));
+    //   scoreList .push(nameTextB.value+" - "+userScore);
+    //   localStorage.setItem("uScore", JSON.stringify(scoreList ));
+
+    // }
+    
+    var existingList = JSON.parse(localStorage.getItem("uScore"));
+     
+    //   console.log(existingList);
+ 
+     if (existingList == null) {
+          scoreList.push(nameTextB.value+" - "+userScore)
+          localStorage.setItem("uScore", JSON.stringify(scoreList));
+     }
+ 
+     else {
+       //   console.log(existingList);
+       scoreList=JSON.parse(localStorage.getItem("uScore"));
+       scoreList.push(nameTextB.value+" - "+userScore)
+       localStorage.setItem("uScore", JSON.stringify(scoreList));
+     }      
+   
+    
+    console.log(scoreList);
+    
+    console.log(scoreList);
     
     // localStorage.setItem("uScore", JSON.stringify(userMarks));
-    localStorage.setItem("uScore", JSON.stringify(scoreList));
-        
+    
     }
 
    
