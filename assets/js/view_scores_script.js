@@ -11,32 +11,54 @@ var scoreList = [];
  // Clear local storage
  function clearHighScore(event){
      event.preventDefault();
-
+   
      var existingList = localStorage.getItem("uScore");
-     console.log(existingList);
+     
+   //   console.log(existingList);
 
     if (existingList == null) {
         return;
     }
 
     else {
+      //   console.log(existingList);
         localStorage.removeItem("uScore");
+        listItem.innerHTML="";
     }      
  }
 
+function renderHighScores()
+{
+   var savedScore=JSON.parse(localStorage.getItem("uScore"));
+   var i=savedScore.length;
+   var textline="";
 
+   if(savedScore!==null)
+   {
+      for(j=0;j<i;j++)
+      {
+         textline=textline+savedScore[j];
+      }
+
+      listItem.innerHTML=textline;
+   }
+
+   else{ 
+      return;}
+}
  function init()
  {
-   var savedMarks =JSON.parse(localStorage.getItem("userMarks"));
-   console.log(savedMarks);
+    renderHighScores();
+//    var savedMarks =JSON.parse(localStorage.getItem("userMarks"));
+//    console.log(savedMarks);
 
-// var userName =savedMarks["uName"];
-//  var marks = savedMarks["marks"];
+// // var userName =savedMarks["uName"];
+// //  var marks = savedMarks["marks"];
 
-   var liElement =document.createElement("li");
-     liElement.textContent="Vish";
-//   liElement.textContent = userName+ " "+marks;
-   listItem.appendChild(liElement);
+//    var liElement =document.createElement("li");
+//      liElement.textContent="Vish";
+// //   liElement.textContent = userName+ " "+marks;
+//    listItem.appendChild(liElement);
 
  }
 
@@ -55,3 +77,4 @@ var scoreList = [];
  init();
  previousBtn.addEventListener("click",visitMainPage);
  clearBtn.addEventListener("click",clearHighScore);
+ init();

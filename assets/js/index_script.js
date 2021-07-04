@@ -33,6 +33,7 @@ var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
 
 var timerInterval = null;
+var scoreList = [];
  
 
 
@@ -168,8 +169,11 @@ var ansDisplay = document.querySelector(".displayAnswer");
       uName: nameTextB.value,
       marks: userScore
     };
+    scoreList = JSON.parse(localStorage.getItem("uScore"));
+    scoreList.push(nameTextB.value+" "+userScore);
     
-    localStorage.setItem("uScore", JSON.stringify(userMarks));
+    // localStorage.setItem("uScore", JSON.stringify(userMarks));
+    localStorage.setItem("uScore", JSON.stringify(scoreList));
         
     }
 
