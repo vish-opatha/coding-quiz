@@ -21,17 +21,23 @@
   
   .main{
       display:flex;
-      flex-direction: row;
+      
      
   }
   .quiz-main{
     display:flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     }
 
-  .quiz-main h2{
+  h2,h4{
       text-align: center;
   }
+
+  /* .start-quiz{
+      align-self: center;
+  } */
 
   
 
