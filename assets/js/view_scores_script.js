@@ -1,82 +1,60 @@
 var previousBtn = document.querySelector("#previousBtn");
 var clearBtn = document.querySelector("#clearBtn");
-var listItem = document.querySelector("#score-list")
+var listItem = document.querySelector("#score-list");
 var scoreList = [];
 
- function visitMainPage(event){
+//#######  Function to go back to index.html page  ##########
+function visitMainPage(event)
+{
     event.preventDefault();
     window.location.replace('index.html');
+}
+
+ //#######  Function to clear scores in local storage ##########
+function clearHighScore(event)
+{
+   event.preventDefault();
+   var existingList = localStorage.getItem("uScore");
+   if (existingList == null)
+   {
+      return;
+   }
+
+   else
+   {
+      localStorage.removeItem("uScore");
+      listItem.innerHTML="";
+   }      
  }
 
- // Clear local storage
- function clearHighScore(event){
-     event.preventDefault();
-   
-     var existingList = localStorage.getItem("uScore");
-     
-   //   console.log(existingList);
-
-    if (existingList == null) {
-        return;
-    }
-
-    else {
-      //   console.log(existingList);
-        localStorage.removeItem("uScore");
-        listItem.innerHTML="";
-    }      
- }
-
+//#######  Function to get scores in the local storage ##########
 function renderHighScores()
 {
-   var savedScore=JSON.parse(localStorage.getItem("uScore"));
-   
-   var textline="";
-
-   if(savedScore!==null)
+   var scoreItems = [];
+   scoreItems=JSON.parse(localStorage.getItem("uScore"));
+   if(scoreItems!==null)
    {
-   var i=savedScore.length;
-   {
+      var i=scoreItems.length;
       for(j=0;j<i;j++)
       {
-         textline=textline+savedScore[j];
+         var lItem=document.createElement("li");
+         lItem.innerHTML=scoreItems[j];
+         listItem.appendChild(lItem);
       }
+   }
 
-      listItem.innerHTML=textline;
-   }}
-
-   else{ 
-      return;}
+   else
+   { 
+      return;
+   }
 }
- function init()
- {
-    renderHighScores();
-//    var savedMarks =JSON.parse(localStorage.getItem("userMarks"));
-//    console.log(savedMarks);
 
-// // var userName =savedMarks["uName"];
-// //  var marks = savedMarks["marks"];
+//#######  Init function on page load ########## 
+function init()
+{
+   renderHighScores(); 
+}
 
-//    var liElement =document.createElement("li");
-//      liElement.textContent="Vish";
-// //   liElement.textContent = userName+ " "+marks;
-//    listItem.appendChild(liElement);
-
- }
-
-//  function init() {
-//     // Get stored todos from localStorage
-//     var storedScore = JSON.parse(localStorage.getItem('todos'));
-  
-//     // If todos were retrieved from localStorage, update the todos array to it
-//     if (storedTodos !== null) {
-//       todos = storedTodos;
-//     }
-  
-//     // This is a helper function that will render todos to the DOM
-//     renderTodos();
-//   }
- init();
- previousBtn.addEventListener("click",visitMainPage);
- clearBtn.addEventListener("click",clearHighScore);
- init();
+init();
+previousBtn.addEventListener("click",visitMainPage);
+clearBtn.addEventListener("click",clearHighScore);
