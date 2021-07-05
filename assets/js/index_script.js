@@ -51,24 +51,32 @@ function setTime(event)
 function displayQuestions()
 {
   indResult.textContent = "";
-    
-  question.innerHTML = questionPool[i][0];
-  answerOne.innerHTML = "1. "+ questionPool[i][1];   answerOne.setAttribute("ans-option", "1");
-  answerTwo.innerHTML = "2. "+ questionPool[i][2];   answerTwo.setAttribute("ans-option", "2");
-  answerThree.innerHTML ="3. "+ questionPool[i][3];  answerThree.setAttribute("ans-option", "3");
-  answerFour.innerHTML = "4. "+ questionPool[i][4];  answerFour.setAttribute("ans-option", "4");
-  correctAnswer = questionPool[i][5];
 
-  question.setAttribute("class","left-align");
+  if(scoreTime==0)
+  {
+    scoreSubmission();  
+  }
 
-  answerList.appendChild(question);
-  answerList.appendChild(answerOne);
-  answerList.appendChild(answerTwo);
-  answerList.appendChild(answerThree);
-  answerList.appendChild(answerFour);
+  else
+  {
+    question.innerHTML = questionPool[i][0];
+    answerOne.innerHTML = "1. "+ questionPool[i][1];   answerOne.setAttribute("ans-option", "1");
+    answerTwo.innerHTML = "2. "+ questionPool[i][2];   answerTwo.setAttribute("ans-option", "2");
+    answerThree.innerHTML ="3. "+ questionPool[i][3];  answerThree.setAttribute("ans-option", "3");
+    answerFour.innerHTML = "4. "+ questionPool[i][4];  answerFour.setAttribute("ans-option", "4");
+    correctAnswer = questionPool[i][5];
+
+    question.setAttribute("class","left-align");
+
+    answerList.appendChild(question);
+    answerList.appendChild(answerOne);
+    answerList.appendChild(answerTwo);
+    answerList.appendChild(answerThree);
+    answerList.appendChild(answerFour);
 
   i++;
   questionCount--;
+  } 
 }
 
 //############ Function to display the if the answer is correct or wrong ############
@@ -81,10 +89,35 @@ function displayQuestionResult(event)
   if (element.matches('button') === true)
   {
     var optionValue =element.getAttribute("ans-option");
+    // if(scoreTime<0)
+    // {
+    //   clearInterval(timerInterval);
+    //   scoreTime=0;
+    //   displayTime.innerHTML=scoreTime;
+    // }
+
+    // else
+    // {
+    //   if(optionValue == correctAnswer)
+    //   {
+    //     scoreTime=scoreTime;
+    //     indResult.textContent = "Correct ✔️";
+    //     ansDisplay.appendChild(indResult);
+    //   }
+    //   else
+    //   {
+    //     scoreTime=scoreTime-10;
+    //     displayTime.innerHTML=scoreTime;
+    //     indResult.textContent = "Incorrect ❌";
+    //     ansDisplay.appendChild(indResult);
+
+    //   }
+    // }
     if(optionValue == correctAnswer)
     {
-      if(scoreTime<10)
+      if(scoreTime<=0)
       {
+        scoreTime=0;
         displayTime.innerHTML=0
       }
       else
@@ -92,16 +125,16 @@ function displayQuestionResult(event)
         scoreTime=scoreTime;
         indResult.textContent = "Correct ✔️";
         ansDisplay.appendChild(indResult);
-      }      
-      
+      }           
     }
 
     else
     {
       scoreTime=scoreTime-10;
-      if(scoreTime<10)
+      if(scoreTime<0)
       {
-        displayTime.innerHTML=0
+        scoreTime=0;
+        displayTime.innerHTML=0;
       }
       else
       {
@@ -116,31 +149,7 @@ function displayQuestionResult(event)
   if(questionCount==0 || scoreTime==0)
   {
     clearInterval(timerInterval);
-   
-    setTimeout(function() 
-    {
-      answerList.setAttribute("class","hide-elements");
-      indResult.setAttribute("Class","hide-elements");
-    }, 800);
-
-    setTimeout(function() 
-    {
-      var headerFour= document.createElement("h4");
-      var letterPElement = document.createElement("label");
-      headerFour.textContent="All done. Your final score is "+ scoreTime +".";
-      letterPElement.innerHTML="Enter your initials ";
-
-      submitBtn.innerHTML="Submit";
-      nameTextB.setAttribute("type","text");
-      nameTextB.setAttribute("id","userName");
-
-      ansDisplay.setAttribute("class","final-marks-display");
-
-      ansDisplay.appendChild(headerFour);
-      ansDisplay.appendChild(letterPElement);
-      ansDisplay.appendChild(nameTextB);
-      ansDisplay.appendChild(submitBtn);
-    }, 800);
+    scoreSubmission();
   }
 
   else
@@ -148,8 +157,34 @@ function displayQuestionResult(event)
     setTimeout(function()
     {
       displayQuestions();
-    }, 800);
+    },400);
   }
+}
+
+//############ Function to load score submission elements #########
+function scoreSubmission()
+{
+  setTimeout(function() 
+  {
+    var headerFour= document.createElement("h4");
+    var letterPElement = document.createElement("label");
+
+    answerList.setAttribute("class","hide-elements");
+    indResult.setAttribute("Class","hide-elements");
+    headerFour.textContent="All done. Your final score is "+ scoreTime +".";
+    letterPElement.innerHTML="Enter your initials ";
+
+    submitBtn.innerHTML="Submit";
+    nameTextB.setAttribute("type","text");
+    nameTextB.setAttribute("id","userName");
+
+    ansDisplay.setAttribute("class","final-marks-display");
+
+    ansDisplay.appendChild(headerFour);
+    ansDisplay.appendChild(letterPElement);
+    ansDisplay.appendChild(nameTextB);
+    ansDisplay.appendChild(submitBtn);
+  }, 400);
 }
 
 //############ Function to save score in the local storage ############
@@ -185,6 +220,8 @@ function hidePageElements()
 quizStartBtn.addEventListener("click", setTime); 
 answerList.addEventListener("click",displayQuestionResult);
 submitBtn.addEventListener("click",savescoreTime);
+
+
  
   
 
