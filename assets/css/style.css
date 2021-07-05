@@ -54,8 +54,11 @@
   h4{
       font-weight: 300;
   }
+
   .displayQuiz h4{
       font-weight: 700;
+      margin-bottom: 2%;
+      font-size: 18px;
   }
 
  
@@ -81,7 +84,7 @@
       font-weight: 600;
       background-color:rgb(168, 226, 168);
       border-radius: 4px;
-      
+      margin-top:1%;
       border:1px solid rgb(196, 187, 187);
   }
 
@@ -113,7 +116,10 @@
 }
 
 .final-marks-display h4{
+    font-size:18px;
+    margin-bottom: 5px;
     font-weight: 700;
+    text-align:left;
     
 }
 
