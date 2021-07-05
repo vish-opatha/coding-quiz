@@ -10,7 +10,7 @@ Refer to the following links:
 
 ## Mock-up
 The following video clip shows how the quiz works.
-* [Coding Quiz - Video](https://drive.google.com/file/d/1-rQv__1jcVZo4LBHna2wKM3y0kYfvDV7/view)
+* [Coding Quiz - Video](https://drive.google.com/file/d/1nl-SqQ4iny6qRsCnynR8jLN_oSMIMh-a/view?usp=sharing)
 ---
  Highlights :
   1. When the 'Start' button is pressed quiz starts with the timer
@@ -25,6 +25,7 @@ The following video clip shows how the quiz works.
 3. Selected answer is validated against the stored correct answer, and displays the result(correc or wrong) below the possible answer buttons.
 4. If the user gives an incorrect answer score time will be reduced by 10 and displayed in the timer display.
 5. The user is presented to enter his/her initials if the timer is zero or question count is zero.
+6. If you reach the 0 in available time, correct answer will not be displayed for the existing question, and the application will go to score submission.
 6. Scores and initials are saved in local storage and they can be viewed on a seperate html file called view_highscore.
 
 ## Deployment - Work Done
