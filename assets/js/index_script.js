@@ -21,7 +21,7 @@ var answerList = document.querySelector(".displayQuiz");
 var ansDisplay = document.querySelector(".displayAnswer");
 var indResult = document.createElement("p");
 
-var scoreTime = 100;
+var scoreTime = 50;
 
 var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
@@ -59,6 +59,8 @@ function displayQuestions()
   answerFour.innerHTML = "4. "+ questionPool[i][4];  answerFour.setAttribute("ans-option", "4");
   correctAnswer = questionPool[i][5];
 
+  question.setAttribute("class","left-align");
+
   answerList.appendChild(question);
   answerList.appendChild(answerOne);
   answerList.appendChild(answerTwo);
@@ -81,17 +83,32 @@ function displayQuestionResult(event)
     var optionValue =element.getAttribute("ans-option");
     if(optionValue == correctAnswer)
     {
-      scoreTime=scoreTime;
-      indResult.textContent = "Correct✔️ ";
-      ansDisplay.appendChild(indResult);
+      if(scoreTime<10)
+      {
+        displayTime.innerHTML=0
+      }
+      else
+      {
+        scoreTime=scoreTime;
+        indResult.textContent = "Correct ✔️";
+        ansDisplay.appendChild(indResult);
+      }      
+      
     }
 
     else
     {
       scoreTime=scoreTime-10;
-      displayTime.innerHTML=scoreTime;
-      indResult.textContent = "Incorrect ";
-      ansDisplay.appendChild(indResult);
+      if(scoreTime<10)
+      {
+        displayTime.innerHTML=0
+      }
+      else
+      {
+        displayTime.innerHTML=scoreTime;
+        indResult.textContent = "Incorrect ❌";
+        ansDisplay.appendChild(indResult);
+      }      
     }
   }
 
@@ -109,14 +126,17 @@ function displayQuestionResult(event)
     setTimeout(function() 
     {
       var headerFour= document.createElement("h4");
-      var letterPElement = document.createElement("p");
-      headerFour.textContent="All done. Your final score is "+ scoreTime;
+      var letterPElement = document.createElement("label");
+      headerFour.textContent="All done. Your final score is "+ scoreTime +".";
       letterPElement.innerHTML="Enter your initials ";
 
       submitBtn.innerHTML="Submit";
       nameTextB.setAttribute("type","text");
       nameTextB.setAttribute("id","userName");
 
+      ansDisplay.setAttribute("class","final-marks-display");
+
+      ansDisplay.appendChild(headerFour);
       ansDisplay.appendChild(letterPElement);
       ansDisplay.appendChild(nameTextB);
       ansDisplay.appendChild(submitBtn);

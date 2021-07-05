@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+        font-family: Arial;
+ 
   }
   
   body {
@@ -13,6 +15,15 @@
     
   }
 
+  a{
+      text-decoration: none;
+  }
+
+  
+  .header p,#counter{
+      font-weight: 600;
+  }
+
   .header{
       display:flex;
       flex-direction: row;
@@ -23,23 +34,22 @@
   .main{
       display:flex;
       flex-direction: column;
+      text-align: center;
+      margin: 0 5% 0 5%;
       
      
   }
   .quiz-main{
-    display:flex;
+     display:flex; 
+    text-align: center;
     /* flex-direction: column; */
     /* flex-direction: row; */
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     
     } */
 
-    /* #startQuiz{
-        align-self: center;
-        justify-items: center;
-
-    } */
+   
 
   h2,h4{
       text-align: center;
@@ -50,12 +60,48 @@
   h4{
       font-weight: 300;
   }
+  .displayQuiz h4{
+      font-weight: 700;
+  }
 
-  /* .start-quiz{
-      align-self: center;
-  } */
+ 
+  .displayQuiz button{
+      display:block;
+      margin :0 0 1% 0;
+      padding:4px;
+      width:100%;
+      text-align: left;
+      border:1px solid rgb(196, 187, 187);
+      border-radius: 4px;
+      
+      background-color:rgb(168, 226, 168);
+  }
 
-  
+  .displayQuiz button:hover{
+      opacity: 0.7;
+  }
+
+  #startQuiz, .displayAnswer button{
+      width: 15%;
+      padding:4px;
+      font-weight: 600;
+      background-color:rgb(168, 226, 168);
+      border-radius: 4px;
+      
+      border:1px solid rgb(196, 187, 187);
+  }
+
+  .displayAnswer p{
+    text-align: left;
+    color:rgb(71, 68, 68);
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .displayQuiz h4
+  {
+      text-align: left;
+  }
 
      
 
@@ -67,7 +113,60 @@
     display: block;
 }
 
+.final-marks-display{
+    text-align: left;
+   
+}
+
+.final-marks-display h4{
+    font-weight: 700;
+    
+}
+
+.final-marks-display label{
+    font-size : 17px;
+    font-weight: 300;
+    margin:0 2px 0 0;
+}
+
+.final-marks-display button{
+    width: 15%;
+    padding:2px;
+    margin-left: 4px;
+    font-weight: 600;
+    background-color:rgb(168, 226, 168);
+    border-radius: 4px;
+    
+    border:1px solid rgb(196, 187, 187);
+}
+
 /* button{
     display:block;
     
 } */
+
+.viewScore button{
+    width: 15%;
+    padding:2px;
+    margin-left: 4px;
+    font-weight: 600;
+    background-color:rgb(168, 226, 168);
+    border-radius: 4px;
+    
+    border:1px solid rgb(196, 187, 187);
+}
+
+#score-list{
+    margin: 0 35% 1% 32%;
+}
+
+#score-list li{
+    text-align: left;
+    
+    padding :1% 0 1% 0;
+    width:100%;
+    /* margin: 0 auto; */
+    text-indent:0;
+    border-bottom:0.5px solid palegoldenrod;
+    background-color: rgb(135, 170, 135);
+}
