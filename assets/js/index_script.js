@@ -21,7 +21,7 @@ var answerList = document.querySelector(".displayQuiz");
 var ansDisplay = document.querySelector(".displayAnswer");
 var indResult = document.createElement("p");
 
-var scoreTime = 50;
+var scoreTime = 100;
 
 var submitBtn = document.createElement("button");
 var nameTextB = document.createElement("input");
